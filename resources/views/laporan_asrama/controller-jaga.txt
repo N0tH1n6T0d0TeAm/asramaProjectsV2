@@ -1,0 +1,46 @@
+public function rentang_tanggal(Request $req,$nis){
+        $dari = $req->dari;
+        $sampai = $req->sampai;
+    
+        $tabel = Siswa::find($nis);
+        if($req->has('dari')){
+            $tabel2 = Laporan_Perkembangan::with('kategori')->where("nis_siswas", $nis)->WhereBetween('tanggal', [$dari, $sampai])
+            ->orWhereBetween('tanggal', [$sampai, $dari])
+            ->orWhere('tanggal', $dari)
+            ->orWhere('tanggal', $sampai)
+            ->get();
+            
+        }else{
+            $tabel2 = Laporan_Perkembangan::where("nis_siswas", $nis)->get();
+        }
+        $html = view('laporan_asrama.laporan-pdf', ["data" => $tabel, "data2" => $tabel2])->render();
+
+        $pdf = new Dompdf();
+        $pdf->loadHtml($html);
+        $pdf->render();
+
+        return $pdf->stream('laporan.pdf');
+    }
+
+
+
+    //Bukan pdf
+
+    
+public function rentang_tanggal(Request $req, $nis)
+    {
+        $dari = $req->dari;
+        $sampai = $req->sampai;
+
+        $tabel = Siswa::find($nis);
+        if ($req->has('dari')) {
+            $tabel2 = Laporan_Perkembangan::with('kategori')->where("nis_siswas", $nis)->WhereBetween('tanggal', [$dari, $sampai])
+                ->orWhereBetween('tanggal', [$sampai, $dari])
+                ->orWhere('tanggal', $dari)
+                ->orWhere('tanggal', $sampai)
+                ->get();
+        } else {
+            $tabel2 = Laporan_Perkembangan::where("nis_siswas", $nis)->get();
+        }
+        return view('laporan_asrama.laporan-pdf', ["data" => $tabel, "data2" => $tabel2]);
+    }
