@@ -105,8 +105,8 @@ table th {
     <td data-label="Foto Profil"><input type="file" accept="image/*" name="foto_profil[]" class="form-control"></td>
     <td data-label="nis"><input type="number" name="nis[]" placeholder="NIS" class="form-control nis"></td>
     <td data-label="nisn"><input type="number" name="nisn[]" placeholder="NISN" class="form-control nisn"></td>
-    <td data-label="nama_siswa"><input type="text" name="nama_siswa[]" placeholder="Nama Siswa" class="form-control nama_siswa"></td>
-    <td data-label="tempat_lahir"><input type="text" name="tempat_lahir[]" placeholder="Nama Siswa" class="form-control tempat_lahir"></td>
+    <td data-label="nama siswa"><input type="text" name="nama_siswa[]" placeholder="Nama Siswa" class="form-control nama_siswa"></td>
+    <td data-label="tempat lahir"><input type="text" name="tempat_lahir[]" placeholder="Tempat Lahir" class="form-control tempat_lahir"></td>
     <td data-label="jurusan"><select name="jurusan[]" class="form-control jurusan" id="">
                 <option value="">Jurusan</option>
                 @foreach($jurusan as $j)
